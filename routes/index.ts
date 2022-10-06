@@ -16,6 +16,7 @@ class IndexRoute {
 	public async index(req: app.Request, res: app.Response) {
 		res.render("index/index");
 	}
+	
 
 	@app.http.post()
 	// Configuração adicional para poder receber FormData e/ou arquivos.

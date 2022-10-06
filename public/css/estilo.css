@@ -1,0 +1,71 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Open Sans', sans-serif;
+}
+img {
+    max-width: 100%;
+}
+.limitador {
+    max-width: 1500px;
+    margin: 0px auto;
+}
+.cabecalho{
+    background-color: #557DCC;
+    text-align: center;
+}
+.rodape{
+    background-color: #557DCC;
+    text-align: center;
+    bottom: 0px;
+    position: fixed;
+    color: white;
+    width: 100%;
+    height: 50px;
+}
+.index{
+    text-align: center;
+    
+}
+.index-titulo{
+    margin-top: 50px;
+    color:#557DCC;
+    font-weight: 800;
+    font-size: 50px;
+    margin-bottom: 100px;
+}
+.index-botao{
+    text-align: right;
+    padding-top: 55px;
+}
+.index-botao-estilo{
+    text-align: center;
+    border-radius: 999px;
+    padding: 7px 50px 7px 50px;
+    border: 0px;
+    background-color: #557DCC;
+    color: white;
+    
+}
+.index-botao-estilo-1{
+    text-align: center;
+    border-radius: 999px;
+    padding: 7px 40px 7px 40px;
+    border: 0px;
+    background-color: #557DCC;
+    color: white;
+    
+}
+.index-relogio{
+    text-align: left;
+}
+.cadastro{
+    text-align: center;
+}
+.cadastro-titulo{
+    margin-top: 50px;
+    color:#557DCC;
+    font-weight: 800;
+    font-size: 50px;
+    margin-bottom: 100px;
+}
