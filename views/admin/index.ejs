@@ -1,21 +1,70 @@
+<style type="text/css">
+    .limitador {
+        justify-content: start;
+    }
+
+    .navbar {
+        justify-content: start;
+        background-color: #557DCC;
+    }
+    .form-control {
+        color: #557DCC;
+    }
+</style>
+
 <div class="admin">
-    <div class="88">
-        <nav class="navbar navbar-dark bg-primary">
-            <div>
-                <label for="id-filtro-func">
-                    Funcionário
-                </label>
-                <select id="id-filtro-func" class="form-control">
-                    <option selected>Funcionário</option>
-                </select>
-            </div>
-            <div>
-                <label for="id-filtro-data1" >
-                    De
-                </label>
-                <input type="date" id="id-filtro-data1">
-            </div>  
-          </nav>
-        
-    </div>
+    <nav class="navbar navbar-dark admin-filtro">
+        <div class="admin-filtro-filtros-1">
+            <label class="admin-filtro-titulos " for="id-filtro-func">
+                Funcionário
+            </label>
+            <select id="id-filtro-func" class="form-control admin-filtro-select">
+                <option selected>Funcionário</option>
+            </select>
+        </div>
+        <div class="admin-filtro-filtros">
+            <label class="admin-filtro-titulos" for="id-filtro-data1" >
+                De
+            </label>
+            <input type="date" id="id-filtro-data1" class="form-control">
+        </div>  
+        <div class="admin-filtro-filtros" >
+            <label class="admin-filtro-titulos" for="id-filtro-data2" class="form-control">
+                Até
+            </label>
+            <input type="date" id="id-filtro-data2" class="form-control">
+        </div> 
+        <div>
+            <button type="button" class="admin-filtro-buscar">Buscar <img src="/public/img/lupa.png"></button>
+        </div>
+        <div class="admin-filtro-cadastrar">
+            <button type="button" class="admin-filtro-cadastrar-botao">Cadastrar Funcionário</button>
+        </div>
+    </nav>
+    
+    <div class="admin-tabela">
+        <table>
+            <tr class="admin-tabela-titulo">
+                ID
+            </tr>
+            <tr>
+                Funcionário
+            </tr>
+            <tr>
+                Entrada
+            </tr>
+            <tr>
+                Tempo Intervalo
+            </tr>
+            <tr>
+                Volta Trabalhado
+            </tr>
+            <tr>
+
+            </tr>
+            <hr class="admin-tabela-titulo-linha">
+        </table>
+    </div> 
 </div>
+
+
