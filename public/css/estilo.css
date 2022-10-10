@@ -72,5 +72,65 @@ img {
     text-align: left;
 }
 
-/* Admin /*
+/* Admin */
+
+.admin-filtro {
+    border-radius: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.admin-filtro-titulos {
+    color: white;
+}
+.admin-filtro-select {
+    padding-right: 80px;
+}
+
+.admin-filtro-filtros {
+    margin-right: 30px;
+}
+
+.admin-filtro-filtros-1{
+    margin-right: 30px;
+    margin-left: 40px;
+}
+
+.admin-filtro-buscar{
+    border: 0px;
+    border-radius: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #4062A3;
+    color: white;
+}
+.admin-filtro-cadastrar{
+    margin-left: 250px;
+}
+.admin-filtro-cadastrar-botao{
+    border: 0px;
+    border-radius: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #4062A3;
+    color: white;
+}
+
+.admin-tabela{
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.admin-tabela-titulo {
+    color: #557DCC;
+    
+}
+.admin-tabela-titulo-linha{
+    border-color: black;
+    padding: 10px;
+}
 

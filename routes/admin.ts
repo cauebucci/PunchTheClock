@@ -14,7 +14,9 @@
 
 class AdminRoute {
 	public async index(req: app.Request, res: app.Response) {
-		res.render("admin/index");
+		res.render("admin/index", {
+			titulo: "Admin"
+		});
 	}
 	public async cadastro(req: app.Request, res: app.Response) {
 		res.render("admin/cadastro");
