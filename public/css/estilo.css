@@ -1,3 +1,5 @@
+/* Geral */
+
 body{
     margin: 0px;
     padding: 0px;
@@ -14,6 +16,9 @@ img {
     flex-direction: column;
     justify-content: space-between;
 }
+
+/* Layout */
+
 .cabecalho{
     background-color: #557DCC;
     text-align: center;
@@ -27,6 +32,9 @@ img {
     margin-top: 3rem;
     padding: 1rem;
 }
+
+/* index */
+
 .index{
     text-align: center;
     
@@ -62,14 +70,4 @@ img {
 }
 .index-relogio{
     text-align: left;
-}
-.cadastro{
-    text-align: center;
-}
-.cadastro-titulo{
-    margin-top: 50px;
-    color:#557DCC;
-    font-weight: 800;
-    font-size: 50px;
-    margin-bottom: 100px;
 }

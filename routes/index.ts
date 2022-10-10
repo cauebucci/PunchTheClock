@@ -16,6 +16,12 @@ class IndexRoute {
 	public async index(req: app.Request, res: app.Response) {
 		res.render("index/index");
 	}
+	public async admin(req: app.Request, res: app.Response) {
+		res.render("index/admin/index");
+	}
+	public async cadastro(req: app.Request, res: app.Response) {
+		res.render("index/admin/cadastro");
+	}
 
 	
 
