@@ -2,4 +2,48 @@
     <div>
         <h1 class="cadastro-titulo">Cadastro</h1>        
     </div>
+    <div class="cadastro-formulario">
+        <div class="cadastro-form">
+            <label for="cadastro-nome">
+                Nome Completo <span class="cadastro-obrigatorio">*</span>
+            </label>
+            <input class="form-control" type="text" id="cadastro-nome" placeholder="Digite o nome...">
+        </div>
+        
+        <div class="cadastro-form">
+            <label for="cadastro-email">
+                Email <span class="cadastro-obrigatorio">*</span>
+            </label>
+            <input class="form-control" type="email" id="cadastro-email" placeholder="Digite o email...">
+        </div>
+        
+        <div class="cadastro-form">
+            <label for="cadastro-nascimento">
+                Nascimento <span class="cadastro-obrigatorio">*</span>
+            </label>
+            <input class="form-control" type="date" id="cadastro-nascimento">
+        </div>
+        <div class="cadastro-form">
+           <p class="cadastro-tipo-titulo">
+                Tipo da Conta <span class="cadastro-obrigatorio">*</span>
+           </p> 
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="cadastro-tipo-func" value="option2" checked>
+                <label class="form-check-label" for="cadastro-tipo-func">
+                  Funcionário
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="cadastro-tipo-admin" value="option1">
+                <label class="form-check-label" for="cadastro-tipo-admin">
+                  Administrador
+                </label>
+              </div>
+        </div>
+        <div class="cadastro-botoes">
+            <a href="/admin" class="btn btn-outline-primary">Voltar</a>
+            <button type="button" class="btn btn-outline-success">Cadastrar</button>
+        </div>
+       
+    </div>
 </div>

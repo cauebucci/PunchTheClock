@@ -3,7 +3,7 @@
 body{
     margin: 0px;
     padding: 0px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;           
 }
 img {
     max-width: 100%;
@@ -74,17 +74,19 @@ img {
 
 /* Admin */
 
+.admin{
+    margin-left: 20px;
+    margin-right: 20px;
+}
 .admin-filtro {
     border-radius: 40px;
-    margin-left: 10px;
-    margin-right: 10px;
 }
 
 .admin-filtro-titulos {
     color: white;
 }
 .admin-filtro-select {
-    padding-right: 80px;
+    padding-right: 100px;
 }
 
 .admin-filtro-filtros {
@@ -107,7 +109,7 @@ img {
     color: white;
 }
 .admin-filtro-cadastrar{
-    margin-left: 250px;
+    margin-left: 90px;
 }
 .admin-filtro-cadastrar-botao{
     border: 0px;
@@ -122,15 +124,48 @@ img {
 
 .admin-tabela{
     margin-top: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
 }
 .admin-tabela-titulo {
     color: #557DCC;
     
 }
 .admin-tabela-titulo-linha{
-    border-color: black;
-    padding: 10px;
+    border-top: 2px solid #4062A3;
+    margin-top: 0px;
 }
 
+/* Cadastro */
+
+.cadastro{
+    text-align: center;
+    margin-left: 500px;
+    margin-right: 500px;
+    color: #557DCC;
+}
+
+.cadastro-titulo{
+    margin-top: 0px;
+    color:#557DCC;
+    font-weight: 800;
+    font-size: 50px;
+    margin-bottom: 50px;
+}
+
+.cadastro-formulario {
+    text-align: left;
+}
+.cadastro-tipo-titulo{
+    margin-bottom: .5rem;
+}
+.cadastro-obrigatorio {
+    color: red;
+}
+
+.cadastro-form{
+    padding-bottom: 10px;
+}
+
+.cadastro-botoes{
+    text-align: center;
+    padding-top: 30px;
+}
