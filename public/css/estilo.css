@@ -138,8 +138,8 @@ img {
 
 .cadastro{
     text-align: center;
-    margin-left: 500px;
-    margin-right: 500px;
+    min-width: 400px;
+    max-width: 100px;
     color: #557DCC;
 }
 

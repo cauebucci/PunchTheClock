@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="/public/lib/datatables/datatables.min.css"/>
+
 <style type="text/css">
     .limitador {
         justify-content: start;
@@ -45,44 +47,44 @@
     </nav>
     
     <div class="admin-tabela">
-        <table>
-            <tr>
-                ID
-            </tr>
-            <tr>
-                Funcionário
-            </tr>
-            <tr>
-                Entrada
-            </tr>
-            <tr>
-                Tempo Intervalo
-            </tr>
-            <tr>
-                Tempo Trabalhado
-            </tr>
-            <tr>
-
-            </tr>
-            <hr class="admin-tabela-titulo-linha" size="7"/>
-
-            <tbody>
-                1
-            </tbody>
-            <tbody>
-                Cauê Lucas Bucci Bandeira
-            </tbody>
-            <tbody>
-                12/10/2022 ás 08:08:00
-            </tbody>
-            <tbody>
-                00:52:09
-            </tbody>
-            <tbody>
-                11:57:32
-            </tbody>
-        </table>
+        <table id="tabela" class="table table-striped table-hover"></table>
     </div> 
 </div>
 
+<script type="text/javascript" src="/public/lib/datatables/datatables.min.js"></script>
+<script type="text/javascript" src="/public/js/datatables-custom.js"></script>
 
+<script type="text/javascript">
+    $("#tabela").DataTable({
+        autoWidth: false,
+        searching: false,
+        language: tableLanguagePtBr,
+        order: [
+            [0, "asc"],
+            [2, "asc"]
+        ],
+        columns: [
+            { title: "ID", type: "number", data: "id" },
+            { title: "Funcionário", data: "funcionario" },
+            { title: "Entrada", type:"customdatetimeint", data: "entrada" },
+            { title: "Início Intervalo", type:"customdatetimeint", data: "iintervalo" },
+            { title: "Fim Intervalo", type:"customdatetimeint", data: "fintervalo" },
+            { title: "Saída", type:"customdatetimeint", data: "saida" },
+            { title: "Tempo Intervalo", type:"customtime", data: "tintervalo" },
+            { title: "Tempo Trabalhado", type:"customtime", data: "ttrabalho" }
+        ],
+        data: [
+            { id: 1, funcionario: "Cauê Lucas Bucci Bandeira", entrada: "13/10/2022 08:30", iintervalo: "13/10/2022 15:32",  fintervalo: "13/10/2022 16:30", saida: "13/10/2022 18:33", tintervalo: "01:12:34", ttrabalho: "12:08:22"},
+            { id: 2, funcionario: "Cauê Lucas Bucci Bandeira", entrada: "13/10/2022 08:30", iintervalo: "13/10/2022 15:32",  fintervalo: "13/10/2022 16:30", saida: "13/10/2022 18:33", tintervalo: "01:12:34", ttrabalho: "12:08:22"},
+            { id: 3, funcionario: "Cauê Lucas Bucci Bandeira", entrada: "13/10/2022 08:30", iintervalo: "13/10/2022 15:32",  fintervalo: "13/10/2022 16:30", saida: "13/10/2022 18:33", tintervalo: "01:12:34", ttrabalho: "12:08:22"},
+            { id: 4, funcionario: "Gabriel Bastos Guimarões", entrada: "13/10/2022 08:37", iintervalo: "13/10/2022 11:56",  fintervalo: "13/10/2022 12:52", saida: "13/10/2022 17:58", tintervalo: "01:32:21", ttrabalho: "12:43:12"},
+            { id: 5, funcionario: "Lucas da Silva", entrada: "13/10/2022 09:30", iintervalo: "13/10/2022 12:49",  fintervalo: "13/10/2022 13:43", saida: "13/10/2022 19:13", tintervalo: "01:43:32", ttrabalho: "12:18:22"},
+            { id: 6, funcionario: "Lucas da Silva", entrada: "13/10/2022 09:30", iintervalo: "13/10/2022 12:49",  fintervalo: "13/10/2022 13:43", saida: "13/10/2022 19:13", tintervalo: "01:43:32", ttrabalho: "12:18:22"},
+            { id: 7, funcionario: "Lucas da Silva", entrada: "13/10/2022 09:30", iintervalo: "13/10/2022 12:49",  fintervalo: "13/10/2022 13:43", saida: "13/10/2022 19:13", tintervalo: "01:43:32", ttrabalho: "12:18:22"},
+            { id: 8, funcionario: "Lucas da Silva", entrada: "13/10/2022 09:30", iintervalo: "13/10/2022 12:49",  fintervalo: "13/10/2022 13:43", saida: "13/10/2022 19:13", tintervalo: "01:43:32", ttrabalho: "12:18:22"},
+            { id: 9, funcionario: "Jonas Pedro Figueiredo", entrada: "11/09/2022 09:40", iintervalo: "11/09/2022 12:31",  fintervalo: "13/10/2022 13:35", saida: "11/09/2022 19:34", tintervalo: "01:00:23", ttrabalho: "10:28:02"},
+            { id: 10, funcionario: "Jonas Pedro Figueiredo", entrada: "11/09/2022 09:40", iintervalo: "11/09/2022 12:31",  fintervalo: "13/10/2022 13:35", saida: "11/09/2022 19:34", tintervalo: "01:00:23", ttrabalho: "10:28:02"},
+            { id: 11, funcionario: "Jonas Pedro Figueiredo", entrada: "11/09/2022 09:40", iintervalo: "11/09/2022 12:31",  fintervalo: "13/10/2022 13:35", saida: "11/09/2022 19:34", tintervalo: "01:00:23", ttrabalho: "10:28:02"},
+         ]
+    });
+</script>
