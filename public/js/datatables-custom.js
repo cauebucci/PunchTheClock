@@ -1,5 +1,5 @@
 let tableLanguagePtBr = {
-    emptyTable: "Nada para exibir \uD83D\uDE22",
+    emptyTable: "Nada para exibir.",
     info: "Exibindo itens _START_ até _END_ de _TOTAL_",
     infoEmpty: "Exibindo 0 itens",
     infoFiltered: "(filtrado de _MAX_ itens no total)",
@@ -13,8 +13,8 @@ let tableLanguagePtBr = {
     paginate: {
         first: "Primeira",
         last: "Última",
-        previous: '<i class="fa fa-angle-left">',
-        next: '<i class="fa fa-angle-right">'
+        previous: '&lt;',
+        next: '&gt;'
     },
     aria: {
         sortAscending: ": clique para ordenar de modo crescente",

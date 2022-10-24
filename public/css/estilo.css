@@ -138,9 +138,11 @@ img {
 
 .cadastro{
     text-align: center;
-    min-width: 400px;
-    max-width: 100px;
+    width: 100%;
+    max-width: 500px;
     color: #557DCC;
+    margin: 0 auto;
+    padding: 0 10px;
 }
 
 .cadastro-titulo{
@@ -168,4 +170,8 @@ img {
 .cadastro-botoes{
     text-align: center;
     padding-top: 30px;
+}
+
+.dataTables_wrapper > .row > .col-sm-12 {
+    overflow: auto;
 }

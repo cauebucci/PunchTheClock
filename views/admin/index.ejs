@@ -64,27 +64,15 @@
             [2, "asc"]
         ],
         columns: [
-            { title: "ID", type: "number", data: "id" },
-            { title: "Funcionário", data: "funcionario" },
-            { title: "Entrada", type:"customdatetimeint", data: "entrada" },
-            { title: "Início Intervalo", type:"customdatetimeint", data: "iintervalo" },
-            { title: "Fim Intervalo", type:"customdatetimeint", data: "fintervalo" },
-            { title: "Saída", type:"customdatetimeint", data: "saida" },
-            { title: "Tempo Intervalo", type:"customtime", data: "tintervalo" },
-            { title: "Tempo Trabalhado", type:"customtime", data: "ttrabalho" }
+            { title: "ID", type: "number", data: "HorarioID" },
+            { title: "Funcionário", data: "FuncNome" },
+            { title: "Entrada", type:"customdatetimeint", data: "HorarioEntrada" },
+            { title: "Início Intervalo", type:"customdatetimeint", data: "HorarioIIntervalo" },
+            { title: "Fim Intervalo", type:"customdatetimeint", data: "HorarioVIntervalo" },
+            { title: "Saída", type:"customdatetimeint", data: "HorarioSaida" }
+            // { title: "Tempo Intervalo", type:"customtime", data: "tintervalo" },
+            // { title: "Tempo Trabalhado", type:"customtime", data: "ttrabalho" }
         ],
-        data: [
-            { id: 1, funcionario: "Cauê Lucas Bucci Bandeira", entrada: "13/10/2022 08:30", iintervalo: "13/10/2022 15:32",  fintervalo: "13/10/2022 16:30", saida: "13/10/2022 18:33", tintervalo: "01:12:34", ttrabalho: "12:08:22"},
-            { id: 2, funcionario: "Cauê Lucas Bucci Bandeira", entrada: "13/10/2022 08:30", iintervalo: "13/10/2022 15:32",  fintervalo: "13/10/2022 16:30", saida: "13/10/2022 18:33", tintervalo: "01:12:34", ttrabalho: "12:08:22"},
-            { id: 3, funcionario: "Cauê Lucas Bucci Bandeira", entrada: "13/10/2022 08:30", iintervalo: "13/10/2022 15:32",  fintervalo: "13/10/2022 16:30", saida: "13/10/2022 18:33", tintervalo: "01:12:34", ttrabalho: "12:08:22"},
-            { id: 4, funcionario: "Gabriel Bastos Guimarões", entrada: "13/10/2022 08:37", iintervalo: "13/10/2022 11:56",  fintervalo: "13/10/2022 12:52", saida: "13/10/2022 17:58", tintervalo: "01:32:21", ttrabalho: "12:43:12"},
-            { id: 5, funcionario: "Lucas da Silva", entrada: "13/10/2022 09:30", iintervalo: "13/10/2022 12:49",  fintervalo: "13/10/2022 13:43", saida: "13/10/2022 19:13", tintervalo: "01:43:32", ttrabalho: "12:18:22"},
-            { id: 6, funcionario: "Lucas da Silva", entrada: "13/10/2022 09:30", iintervalo: "13/10/2022 12:49",  fintervalo: "13/10/2022 13:43", saida: "13/10/2022 19:13", tintervalo: "01:43:32", ttrabalho: "12:18:22"},
-            { id: 7, funcionario: "Lucas da Silva", entrada: "13/10/2022 09:30", iintervalo: "13/10/2022 12:49",  fintervalo: "13/10/2022 13:43", saida: "13/10/2022 19:13", tintervalo: "01:43:32", ttrabalho: "12:18:22"},
-            { id: 8, funcionario: "Lucas da Silva", entrada: "13/10/2022 09:30", iintervalo: "13/10/2022 12:49",  fintervalo: "13/10/2022 13:43", saida: "13/10/2022 19:13", tintervalo: "01:43:32", ttrabalho: "12:18:22"},
-            { id: 9, funcionario: "Jonas Pedro Figueiredo", entrada: "11/09/2022 09:40", iintervalo: "11/09/2022 12:31",  fintervalo: "13/10/2022 13:35", saida: "11/09/2022 19:34", tintervalo: "01:00:23", ttrabalho: "10:28:02"},
-            { id: 10, funcionario: "Jonas Pedro Figueiredo", entrada: "11/09/2022 09:40", iintervalo: "11/09/2022 12:31",  fintervalo: "13/10/2022 13:35", saida: "11/09/2022 19:34", tintervalo: "01:00:23", ttrabalho: "10:28:02"},
-            { id: 11, funcionario: "Jonas Pedro Figueiredo", entrada: "11/09/2022 09:40", iintervalo: "11/09/2022 12:31",  fintervalo: "13/10/2022 13:35", saida: "11/09/2022 19:34", tintervalo: "01:00:23", ttrabalho: "10:28:02"},
-         ]
+        data: <%- JSON.stringify(dados) %>
     });
 </script>
