@@ -23,7 +23,9 @@
             <select id="id-filtro-func" class="form-control admin-filtro-select">
                 <option selected>Funcionário</option>
                 <option disabled>--------------------------------------</option>
-                <option>Cauê Lucas Bucci Bandeira</option>
+                <% for (let contador = 0; contador < funcionarios.length; contador++) { %>
+                    <option value="<%= contador + 1 %>"><%= funcionarios[contador].FuncNome %></option>
+                <% } %>
             </select>
         </div>
         <div class="admin-filtro-filtros">

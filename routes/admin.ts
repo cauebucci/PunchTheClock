@@ -14,7 +14,7 @@
 
 class AdminRoute {
 	public async index(req: app.Request, res: app.Response) {
-		let dados;
+		let dados, funcionarios;
 		// let dados = [
         //     { id: 1, funcionario: "Cauê Lucas Bucci Bandeira", entrada: "13/10/2022 08:30", iintervalo: "13/10/2022 15:32",  fintervalo: "13/10/2022 16:30", saida: "13/10/2022 18:33", tintervalo: "01:12:34", ttrabalho: "12:08:22"},
         //     { id: 2, funcionario: "Cauê Lucas Bucci Bandeira", entrada: "13/10/2022 08:30", iintervalo: "13/10/2022 15:32",  fintervalo: "13/10/2022 16:30", saida: "13/10/2022 18:33", tintervalo: "01:12:34", ttrabalho: "12:08:22"},
@@ -30,12 +30,16 @@ class AdminRoute {
         // ];
 
 		await app.sql.connect(async (sql: app.Sql) => {
-			dados = await sql.query("SELECT HorarioID, F.FuncNome, format(HorarioEntrada, 'dd/MM/yy hh:mm'), HorarioIIntervalo, HorarioVIntervalo, HorarioSaida from horarios H inner join funcionario F on H.FuncID = F.FuncID;");
+			dados = await sql.query("SELECT HorarioID, F.FuncNome, HorarioEntrada, HorarioIIntervalo, HorarioVIntervalo, HorarioSaida from horarios H inner join funcionario F on H.FuncID = F.FuncID;");
+		});
+		await app.sql.connect(async (sql: app.Sql) => {
+			funcionarios = await sql.query("SELECT FuncNome from funcionario;");
 		});
 
 		res.render("admin/index", {
 			titulo: "Admin",
-			dados: dados
+			dados: dados,
+			funcionarios: funcionarios
 		});
 	}
 
