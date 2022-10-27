@@ -8,6 +8,7 @@
                 Nome Completo <span class="cadastro-obrigatorio">*</span>
             </label>
             <input class="form-control" type="text" id="cadastro-nome" placeholder="Digite o nome...">
+            <p class="cadastro-error" id="cadastro-error-nome"></p>
         </div>
         
         <div class="cadastro-form">
@@ -15,35 +16,113 @@
                 Email <span class="cadastro-obrigatorio">*</span>
             </label>
             <input class="form-control" type="email" id="cadastro-email" placeholder="Digite o email...">
+            <p class="cadastro-error" id="cadastro-error-email"></p>
         </div>
         
         <div class="cadastro-form">
             <label for="cadastro-nascimento">
                 Nascimento <span class="cadastro-obrigatorio">*</span>
             </label>
-            <input class="form-control" type="date" id="cadastro-nascimento">
+            <input class="form-control" type="date" id="cadastro-nascimento" min="1930-01-01" max="2030-01-01">
+            <p class="cadastro-error" id="cadastro-error-niver"></p>
         </div>
         <div class="cadastro-form">
            <p class="cadastro-tipo-titulo">
                 Tipo da Conta <span class="cadastro-obrigatorio">*</span>
            </p> 
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="cadastro-tipo-func" value="option2" checked>
-                <label class="form-check-label" for="cadastro-tipo-func">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="cadastro-tipo-func" checked>
+                <label class="form-check-label" for="cadastro-tipo">
                   Funcionário
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="cadastro-tipo-admin" value="option1">
-                <label class="form-check-label" for="cadastro-tipo-admin">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="cadastro-tipo-admin">
+                <label class="form-check-label" for="cadastro-tipo">
                   Administrador
                 </label>
               </div>
         </div>
         <div class="cadastro-botoes">
             <a href="/admin" class="btn btn-primary">Voltar</a>
-            <button type="button" class="btn btn-success">Cadastrar</button>
+            <button type="button" class="btn btn-success" onclick="cadastrarFuncionario()">Cadastrar</button>
         </div>
        
     </div>
 </div>
+
+<script type="text/javascript">
+    let nome = document.getElementById("cadastro-nome");
+    let email = document.getElementById("cadastro-email");
+    let aniversario = document.getElementById("cadastro-nascimento");
+    let Elementtipo = document.getElementById("cadastro-tipo-func");
+    let tipo; 
+    
+    if(Elementtipo.checked){
+        tipo = 1;
+        console.log("a");
+    }else {
+        tipo = 2;
+        console.log("b");
+    }
+
+    async function cadastrarFuncionario() {
+        if(!nome.value && !email.value && !aniversario.value){
+            document.getElementById("cadastro-error-nome").textContent = "(!) Este campo é obrigatório!";
+            document.getElementById("cadastro-error-email").textContent = "(!) Este campo é obrigatório!";
+            document.getElementById("cadastro-error-niver").textContent = "(!) Este campo é obrigatório!";
+            return;
+        }else if(!nome.value && !email.value) {
+            document.getElementById("cadastro-error-nome").textContent = "(!) Este campo é obrigatório!";
+            document.getElementById("cadastro-error-email").textContent = "(!) Este campo é obrigatório!";
+            document.getElementById("cadastro-error-niver").textContent = null;
+            return;
+        }else if(!nome.value && !aniversario.value){
+            document.getElementById("cadastro-error-nome").textContent = "(!) Este campo é obrigatório!";
+            document.getElementById("cadastro-error-niver").textContent = "(!) Este campo é obrigatório!";
+            document.getElementById("cadastro-error-email").textContent = null;
+            return;
+        }else if(!email.value && !aniversario.value){
+            document.getElementById("cadastro-error-email").textContent = "(!) Este campo é obrigatório!";
+            document.getElementById("cadastro-error-niver").textContent = "(!) Este campo é obrigatório!";
+            document.getElementById("cadastro-error-nome").textContent = null;
+            return;
+        }
+
+        if(!nome.value){
+            document.getElementById("cadastro-error-nome").textContent = "(!) Este campo é obrigatório!";
+            document.getElementById("cadastro-error-niver").textContent = null;
+            document.getElementById("cadastro-error-email").textContent = null;
+            return;
+        }else{
+            document.getElementById("cadastro-error-nome").textContent = null;
+        }
+
+        if(!email.value){
+            document.getElementById("cadastro-error-email").textContent = "(!) Este campo é obrigatório!";
+            document.getElementById("cadastro-error-nome").textContent = null;
+            document.getElementById("cadastro-error-niver").textContent = null;
+            return;
+        }else{
+            document.getElementById("cadastro-error-email").textContent = null;
+        }
+
+        if(!aniversario.value){
+            document.getElementById("cadastro-error-niver").textContent = "(!) Este campo é obrigatório!";
+            document.getElementById("cadastro-error-email").textContent = null
+            document.getElementById("cadastro-error-nome").textContent = null;
+            return;
+        }else{
+            document.getElementById("cadastro-error-niver").textContent = null;
+        }
+
+        let dados = {
+            nome: nome.value,
+            email: email.value,
+            aniversario: aniversario.value,
+            tipo: tipo
+        }
+
+        console.log(dados);
+    }
+</script>

@@ -1,0 +1,16 @@
+<div class="funcionario">
+    <div class="funcionario-select">
+        <label class="funcionarios-label " for="id-filtro-func">
+            Funcionário
+        </label>
+        <select id="id-filtro-func" class="form-control funcionario-select">
+            <option selected>Funcionário</option>
+            <option disabled>--------------------------------------</option>
+            <% for (let contador = 0; contador < funcionarios.length; contador++) { %>
+                <option value="<%= contador + 1 %>"><%= funcionarios[contador].FuncNome %></option>
+            <% } %>
+        </select>
+    </div>
+    
+</div>
+

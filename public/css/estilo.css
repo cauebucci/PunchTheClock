@@ -49,6 +49,7 @@ img {
 .index-botao{
     text-align: right;
     padding-top: 55px;
+    
 }
 .index-botao-estilo{
     text-align: center;
@@ -56,8 +57,17 @@ img {
     padding: 7px 50px 7px 50px;
     border: 0px;
     background-color: #557DCC;
-    color: white;
-    
+    color: white;    
+}
+.index-botao-estilo:hover{
+    text-decoration: none;
+    background-color: #4062A3; 
+    color: white;  
+}
+.index-botao-estilo-1:hover{
+    text-decoration: none;
+    background-color: #4062A3; 
+    color: white;  
 }
 .index-botao-estilo-1{
     text-align: center;
@@ -121,7 +131,11 @@ img {
     background-color: #4062A3;
     color: white;
 }
+.admin-filtro-cadastrar-botao:hover{
+    text-decoration: none;
+    color: white;
 
+}
 .admin-tabela{
     margin-top: 20px;
 }
@@ -132,6 +146,10 @@ img {
 .admin-tabela-titulo-linha{
     border-top: 2px solid #4062A3;
     margin-top: 0px;
+}
+
+.dataTables_wrapper > .row > .col-sm-12 {
+    overflow: auto;
 }
 
 /* Cadastro */
@@ -172,6 +190,23 @@ img {
     padding-top: 30px;
 }
 
-.dataTables_wrapper > .row > .col-sm-12 {
-    overflow: auto;
+.cadastro-error{
+    padding-top: 1px;
+    padding-bottom: 1px ;
+    margin: 0px;
+    font-size: 10px;
+    font-weight: 700;
+    color: red;
+}
+
+/* Funcionario */
+
+.funcionario {
+    color: #4062A3;
+    font-weight: 700;
+    margin: 10px;
+}
+
+.funcionario-select{
+
 }

@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `PunchTheClock`.`funcionario` (
   `FuncID` INT NOT NULL AUTO_INCREMENT,
   `FuncNome` VARCHAR(60) NOT NULL,
   `FuncEmail` VARCHAR(60) NOT NULL,
+  `FuncNiver` DATE NOT NULL,
   `TipoID` INT NOT NULL,
   PRIMARY KEY (`FuncID`),
   INDEX `FuncionarioXTipo_idx` (`TipoID` ASC),
