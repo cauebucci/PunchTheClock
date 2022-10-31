@@ -90,6 +90,7 @@ img {
 }
 .admin-filtro {
     border-radius: 40px;
+    justify-content: center;
 }
 
 .admin-filtro-titulos {
@@ -117,9 +118,10 @@ img {
     padding-bottom: 10px;
     background-color: #4062A3;
     color: white;
+    margin-top: 10px;
 }
 .admin-filtro-cadastrar{
-    margin-left: 90px;
+   text-align: center;
 }
 .admin-filtro-cadastrar-botao{
     border: 0px;
@@ -130,6 +132,7 @@ img {
     padding-bottom: 10px;
     background-color: #4062A3;
     color: white;
+    margin-top: 10px;
 }
 .admin-filtro-cadastrar-botao:hover{
     text-decoration: none;
