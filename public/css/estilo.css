@@ -202,11 +202,51 @@ img {
 /* Funcionario */
 
 .funcionario {
+
+    
+}
+
+.funcionario-label{
     color: #4062A3;
     font-weight: 700;
-    margin: 10px;
 }
 
 .funcionario-select{
+    color: #4062A3;
+}
 
+.funcionario-horario{
+    margin-top: 50px;
+    text-align: center;
+}
+
+.funcionario-horario-hora{
+    color: #4062A3;
+    font-weight: 700;
+    font-size: 100px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.funcionario-horario-local{
+    color: #4062A3;
+    font-weight: 700;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.funcionario-acessar-botao{
+    margin-top: 20px;
+    border: 0px;
+    border-radius: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #4062A3;
+    color: white;
+}
+.funcionario-acessar-botao:hover{
+    text-decoration: none;
+    color: white;
 }

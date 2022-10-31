@@ -32,13 +32,13 @@
            </p> 
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="exampleRadios" id="cadastro-tipo-func" checked>
-                <label class="form-check-label" for="cadastro-tipo">
+                <label class="form-check-label" for="cadastro-tipo-func">
                   Funcionário
                 </label>
               </div>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="exampleRadios" id="cadastro-tipo-admin">
-                <label class="form-check-label" for="cadastro-tipo">
+                <label class="form-check-label" for="cadastro-tipo-admin">
                   Administrador
                 </label>
               </div>
@@ -58,70 +58,91 @@
     let Elementtipo = document.getElementById("cadastro-tipo-func");
     let tipo; 
     
-    if(Elementtipo.checked){
-        tipo = 1;
-        console.log("a");
-    }else {
-        tipo = 2;
-        console.log("b");
-    }
+   
 
     async function cadastrarFuncionario() {
-        if(!nome.value && !email.value && !aniversario.value){
-            document.getElementById("cadastro-error-nome").textContent = "(!) Este campo é obrigatório!";
+		let erros = false;
+        
+		if(!nome.value){
+            erros = true;
+			document.getElementById("cadastro-error-nome").textContent = "(!) Este campo é obrigatório!";
+        } else {
+			document.getElementById("cadastro-error-nome").textContent = "";
+        }
+
+		if(!email.value){
+			erros = true;
             document.getElementById("cadastro-error-email").textContent = "(!) Este campo é obrigatório!";
+        } else {
+			document.getElementById("cadastro-error-email").textContent = "";
+        }
+
+		if(!aniversario.value){
+			erros = true;
             document.getElementById("cadastro-error-niver").textContent = "(!) Este campo é obrigatório!";
-            return;
-        }else if(!nome.value && !email.value) {
-            document.getElementById("cadastro-error-nome").textContent = "(!) Este campo é obrigatório!";
-            document.getElementById("cadastro-error-email").textContent = "(!) Este campo é obrigatório!";
-            document.getElementById("cadastro-error-niver").textContent = null;
-            return;
-        }else if(!nome.value && !aniversario.value){
-            document.getElementById("cadastro-error-nome").textContent = "(!) Este campo é obrigatório!";
-            document.getElementById("cadastro-error-niver").textContent = "(!) Este campo é obrigatório!";
-            document.getElementById("cadastro-error-email").textContent = null;
-            return;
-        }else if(!email.value && !aniversario.value){
-            document.getElementById("cadastro-error-email").textContent = "(!) Este campo é obrigatório!";
-            document.getElementById("cadastro-error-niver").textContent = "(!) Este campo é obrigatório!";
-            document.getElementById("cadastro-error-nome").textContent = null;
+        } else {
+			document.getElementById("cadastro-error-niver").textContent = "";
+        }
+
+        if(erros){
             return;
         }
 
-        if(!nome.value){
-            document.getElementById("cadastro-error-nome").textContent = "(!) Este campo é obrigatório!";
-            document.getElementById("cadastro-error-niver").textContent = null;
-            document.getElementById("cadastro-error-email").textContent = null;
-            return;
-        }else{
-            document.getElementById("cadastro-error-nome").textContent = null;
-        }
+		let tipo; 
 
-        if(!email.value){
-            document.getElementById("cadastro-error-email").textContent = "(!) Este campo é obrigatório!";
-            document.getElementById("cadastro-error-nome").textContent = null;
-            document.getElementById("cadastro-error-niver").textContent = null;
-            return;
-        }else{
-            document.getElementById("cadastro-error-email").textContent = null;
-        }
-
-        if(!aniversario.value){
-            document.getElementById("cadastro-error-niver").textContent = "(!) Este campo é obrigatório!";
-            document.getElementById("cadastro-error-email").textContent = null
-            document.getElementById("cadastro-error-nome").textContent = null;
-            return;
-        }else{
-            document.getElementById("cadastro-error-niver").textContent = null;
-        }
+		if(Elementtipo.checked){
+			tipo = 1;
+		}else {
+			tipo = 2;
+		}
 
         let dados = {
             nome: nome.value,
             email: email.value,
-            aniversario: aniversario.value,
+            niver: aniversario.value,
             tipo: tipo
         }
+
+        let opcoes = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+		    },
+		    body: JSON.stringify(dados)
+		};
+        
+
+        try{
+            let response = await fetch("/admin/CadastrarFuncionario", opcoes);
+
+            if(response.ok){
+                Swal.fire({
+                icon: 'success',
+                title: 'Cadastrado com sucesso!',
+                text: `O funcionário ${nome.value} foi cadastrado com sucesso!`
+                });
+                        
+                nome.value = null;
+                email.value = null;
+                aniversario.value = null;
+            }else{
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops..',
+                text: `Deu um erro ao cadastrar o funcionário!`
+                });
+            }
+
+        } catch(ex){
+            Swal.fire({
+            icon: 'error',
+            title: 'Ops..',
+            text: `Erro ao cadastrar! \n ERRO: ${ex.message}`
+        });
+        }
+
+        
+
 
         console.log(dados);
     }

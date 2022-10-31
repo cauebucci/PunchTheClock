@@ -1,16 +1,60 @@
 <div class="funcionario">
-    <div class="funcionario-select">
-        <label class="funcionarios-label " for="id-filtro-func">
-            Funcionário
-        </label>
-        <select id="id-filtro-func" class="form-control funcionario-select">
-            <option selected>Funcionário</option>
-            <option disabled>--------------------------------------</option>
-            <% for (let contador = 0; contador < funcionarios.length; contador++) { %>
-                <option value="<%= contador + 1 %>"><%= funcionarios[contador].FuncNome %></option>
-            <% } %>
-        </select>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4 ">
+                <label class="funcionario-label " for="id-filtro-func">
+                    Funcionário
+                </label>
+                <select id="id-filtro-func" class="form-control funcionario-select">
+                    <option selected>Funcionário</option>
+                    <option disabled>--------------------------------------</option>
+                    <% for (let contador = 0; contador < funcionarios.length; contador++) { %>
+                        <option value="<%= contador + 1 %>"><%= funcionarios[contador].FuncNome %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <p>
+                    <button type="button" id="buscar-func" onclick="" class="funcionario-acessar-botao">Acessar</button>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="funcionario-horario">
+        <div>
+            <p class="funcionario-horario-hora" id="horario"></p>
+            <p class="funcionario-horario-local">Horário oficial de Brasília</p>
+        </div>
     </div>
     
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+    let horario = document.getElementById("horario");
+
+    function f2(x) {
+        if (x < 10)
+            return "0" + x;
+        else
+            return x.toString();
+    }
+
+    function atualizarHorario() {
+        const agora = new Date();
+        horario.textContent = `${f2(agora.getHours())}:${f2(agora.getMinutes())}:${f2(agora.getSeconds())}`;
+    }
+
+    atualizarHorario();
+
+    setInterval(atualizarHorario, 250);
+
+    function teste() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!'
+        });
+    }
+</script>

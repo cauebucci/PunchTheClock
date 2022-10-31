@@ -48,7 +48,7 @@ class AdminRoute {
 	}
 
 	@app.http.post()
-	public async cadastrar(req: app.Request, res: app.Response) {
+	public async CadastrarFuncionario(req: app.Request, res: app.Response) {
 		let funcionario = req.body;
 
 		if (!funcionario) {
@@ -63,8 +63,25 @@ class AdminRoute {
 			return;
 		}
 
+		if (!funcionario.email) {
+			res.statusCode = 400;
+			res.json("Email inválido");
+			return;
+		}
+
+		if (!funcionario.niver) {
+			res.statusCode = 400;
+			res.json("Aniversario inválido");
+			return;
+		}
+
+		if (!funcionario.tipo) {
+			res.statusCode = 400;
+			res.json("Tipo inválido");
+			return;
+		}
 		await app.sql.connect(async (sql: app.Sql) => {
-			await sql.query("INSERT INTO funcionario (nome, email) VALUES (?, ?)", [funcionario.nome, funcionario.email]);
+			await sql.query("INSERT INTO funcionario (FuncNome, FuncEmail, FuncNiver, TipoID) VALUES (?, ?, ?, ?)", [funcionario.nome, funcionario.email, funcionario.niver, funcionario.tipo]);
 		});
 
 		res.json(true);
