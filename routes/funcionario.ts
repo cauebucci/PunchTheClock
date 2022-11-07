@@ -24,8 +24,20 @@ class FuncionarioRoute {
 			titulo: "Funcionario",
 			funcionarios: funcionarios
 		});
+	}
 
-        
+	public async getStatus(func) {
+		let HorarioEntrada, HorarioIIntervalo, HorarioVIntervalo, HorarioSaida;
+		await app.sql.connect(async (sql: app.Sql) => {
+			HorarioEntrada = await sql.query("select * from horarios where FuncID = ? and HorarioEntrada is null;", [func]);
+			HorarioIIntervalo = await sql.query("select * from horarios where FuncID = ? and HorarioIIntervalo is null;", [func]);
+			HorarioVIntervalo = await sql.query("select * from horarios where FuncID = ? and HorarioVIntervalo is null;", [func]);
+			HorarioSaida = await sql.query("select * from horarios where FuncID = ? and HorarioSaida is null;", [func]);
+
+		});
+
+		
+
 	}
 
 }

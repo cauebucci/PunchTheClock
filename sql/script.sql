@@ -54,10 +54,11 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `PunchTheClock`.`horarios` (
   `HorarioID` INT NOT NULL AUTO_INCREMENT,
   `FuncID` INT NOT NULL,
-  `HorarioEntrada` DATETIME NOT NULL,
-  `HorarioIIntervalo` DATETIME NOT NULL,
-  `HorarioVIntervalo` DATETIME NOT NULL,
-  `HorarioSaida` DATETIME NOT NULL,
+  `Data` DATETIME NOT NULL,
+  `HorarioEntrada` DATETIME,
+  `HorarioIIntervalo` DATETIME,
+  `HorarioVIntervalo` DATETIME,
+  `HorarioSaida` DATETIME,
   PRIMARY KEY (`HorarioID`),
   INDEX `HorarioXFuncionario_idx` (`FuncID` ASC),
   CONSTRAINT `HorarioXFuncionario`
