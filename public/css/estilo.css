@@ -253,3 +253,65 @@ img {
     text-decoration: none;
     color: white;
 }
+
+.funcionario-botao-entrar{
+    margin-top: 20px;
+    border: 0px;
+    border-radius: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #4062A3;
+    color: white;
+}
+.funcionario-botao-entrar:hover{
+    text-decoration: none;
+    color: white;
+}
+
+.funcionario-botao-ialmoco{
+    margin-top: 20px;
+    border: 0px;
+    border-radius: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #C5C91C;
+    color: white;
+}
+.funcionario-botao-ialmoco:hover{
+    text-decoration: none;
+    color: white;
+}
+.funcionario-botao-valmoco{
+    margin-top: 20px;
+    border: 0px;
+    border-radius: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #C96F1C;
+    color: white;
+}
+.funcionario-botao-valmoco:hover{
+    text-decoration: none;
+    color: white;
+}
+.funcionario-botao-sair{
+    margin-top: 20px;
+    border: 0px;
+    border-radius: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #F80707;
+    color: white;
+}
+.funcionario-botao-sair:hover{
+    text-decoration: none;
+    color: white;
+}
