@@ -1,7 +1,7 @@
 <div class="funcionario">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-4 ">
+            <div class="col-sm-4 offset-sm-2">
                 <label class="funcionario-label " for="id-filtro-func">
                     Funcionário
                 </label>
@@ -13,25 +13,20 @@
                     <% } %>
                 </select>
             </div>
-            <div class="col-sm-4">
-                <p>
-                    <button type="button" id="buscar-func" onclick="innerStatus(1)" class="funcionario-acessar-botao">Acessar</button>
-                </p>
+            <div class="col-sm-4 d-flex flex-column justify-content-end">
+                <button type="button" id="buscar-func" onclick="innerStatus()" class="funcionario-acessar-botao">Acessar</button>
             </div>
         </div>
     </div>
     
-    <div class="funcionario-horario" id="status">
-        
-    </div>
+    <div class="funcionario-horario" id="status"></div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script type="text/javascript">
-    let FuncionarRelogio = false;
-
-    let horario = document.getElementById("horario");
+    let processando = false;
+    let idIntervalo = 0;
 
     function f2(x) {
         if (x < 10)
@@ -42,11 +37,14 @@
 
     function atualizarHorario() {
         const agora = new Date();
+
+        let horario = document.getElementById("horario");
+        if (!horario) {
+            return;
+        }
+
         horario.textContent = `${f2(agora.getHours())}:${f2(agora.getMinutes())}:${f2(agora.getSeconds())}`;
     }
-
-       
-
 
     let relogio = `
     <div>
@@ -56,31 +54,102 @@
     `
     let EntrarEmServico = `
     <div>
-        <button type="button" onclick="" class="funcionario-botao-entrar">Entrar em Serviço</button>
+        <button type="button" onclick="baterPonto()" class="funcionario-botao-entrar">Entrar em Serviço</button>
     </div>    
     `
     let IniciarAlmoco = `
     <div>
-        <button type="button" onclick="" class="funcionario-botao-ialmoco">Horário de Almoço</button>
+        <button type="button" onclick="baterPonto()" class="funcionario-botao-ialmoco">Horário de Almoço</button>
     </div>    
     `
     let VoltarAlmoco = `
     <div>
-        <button type="button" onclick="" class="funcionario-botao-valmoco">Voltar ao Serviço</button>
+        <button type="button" onclick="baterPonto()" class="funcionario-botao-valmoco">Voltar ao Serviço</button>
     </div>    
     `
     let SairDoServico = `
     <div>
-        <button type="button" onclick="" class="funcionario-botao-sair">Sair de Serviço</button>
+        <button type="button" onclick="baterPonto()" class="funcionario-botao-sair">Sair de Serviço</button>
     </div>    
     `
 
-    
+    async function innerStatus() {
+        if (processando) {
+            return;
+        }
 
-    function innerStatus(opc) {
+        if (idIntervalo) {
+            clearInterval(idIntervalo);
+            idIntervalo = 0;
+        }
 
         let status = document.getElementById("status");
+
+        let id = parseInt(document.getElementById("id-filtro-func").value);
+        if (!id) {
+            status.innerHTML = "";
+            return;
+        }
+
+        let opc;
+
+        try {
+            processando = true;
+            const response = await fetch("/funcionario/getStatus?id=" + id);
+            if (!response.ok) {
+                processando = false;
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ops..',
+                    text: `Ocorreu um erro.`
+                });
+                return;
+            }
+
+            const lista = await response.json();
+            processando = false;
+
+            if (!lista) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ops..',
+                    text: `O ID informado pelo sistema é inválido!`
+                });
+                return;
+            }
+
+            if (!lista.length) {
+                opc = 1;
+            } else {
+                const ponto = lista[0];
+                if (!ponto.ii) {
+                    opc = 2;
+                } else if (!ponto.vi) {
+                    opc = 3;
+                } else if (!ponto.s) {
+                    opc = 4;
+                } else {
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Concluído',
+                        text: `O ponto de hoje foi batido com sucesso!`
+                    });
+                    status.innerHTML = "";
+                    return;
+                }
+            }
+        } catch (ex) {
+            processando = false;
+            Swal.fire({
+                    icon: 'error',
+                    title: 'Ops..',
+                    text: `ERRO: ` + ex.message
+                });
+            return;
+        }
+
         let divs = "";
+
         if (opc == 1){
             divs = relogio + EntrarEmServico;
         }else if(opc == 2){
@@ -91,8 +160,48 @@
             divs = relogio + SairDoServico;
         }
         status.innerHTML = divs;
+
         atualizarHorario();
-        setInterval(atualizarHorario, 250);
+
+        idIntervalo = setInterval(atualizarHorario, 250);
+    }
+
+    async function baterPonto() {
+        if (processando) {
+            return;
+        }
+
+        let id = parseInt(document.getElementById("id-filtro-func").value);
+        if (!id) {
+            return;
+        }
+
+        try {
+            processando = true;
+            const response = await fetch("/funcionario/baterPonto?id=" + id);
+            processando = false;
+
+            if (!response.ok) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ops..',
+                    text: `Ocorreu um erro.`
+                });
+                return;
+            }
+
+            // Swal OK!
+
+            innerStatus();
+        } catch (ex) {
+            processando = false;
+            Swal.fire({
+                    icon: 'error',
+                    title: 'Ops..',
+                    text: `Ocorreu um erro.`
+                });
+            return;
+        }
     }
 
 </script>

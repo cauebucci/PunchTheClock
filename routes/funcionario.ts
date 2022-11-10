@@ -14,7 +14,7 @@ import app = require("teem");
 
 class FuncionarioRoute {
 	public async index(req: app.Request, res: app.Response) {
-        let funcionarios;
+        let funcionarios: any[];
 
         await app.sql.connect(async (sql: app.Sql) => {
 			funcionarios = await sql.query("SELECT FuncNome from funcionario;");
@@ -26,20 +26,53 @@ class FuncionarioRoute {
 		});
 	}
 
-	public async getStatus(func) {
-		let HorarioEntrada, HorarioIIntervalo, HorarioVIntervalo, HorarioSaida;
-		await app.sql.connect(async (sql: app.Sql) => {
-			HorarioEntrada = await sql.query("select * from horarios where FuncID = ? and HorarioEntrada is null;", [func]);
-			HorarioIIntervalo = await sql.query("select * from horarios where FuncID = ? and HorarioIIntervalo is null;", [func]);
-			HorarioVIntervalo = await sql.query("select * from horarios where FuncID = ? and HorarioVIntervalo is null;", [func]);
-			HorarioSaida = await sql.query("select * from horarios where FuncID = ? and HorarioSaida is null;", [func]);
+	public async getStatus(req: app.Request, res: app.Response) {
+		let lista: any[];
 
+		let id = parseInt(req.query["id"] as string);
+		if (!id) {
+			res.statusCode = 400;
+			res.json("Id inválido");
+			return;
+		}
+
+		await app.sql.connect(async (sql: app.Sql) => {
+			lista = await sql.query("select HorarioIIntervalo ii, HorarioVIntervalo vi, HorarioSaida s from horarios where FuncID = ? and Data = date(now())", [id]);
 		});
 
-		
-
+		res.json(lista);
 	}
 
+	public async baterPonto(req: app.Request, res: app.Response) {
+		let id = parseInt(req.query["id"] as string);
+		if (!id) {
+			res.statusCode = 400;
+			res.json("Id inválido");
+			return;
+		}
+
+		await app.sql.connect(async (sql: app.Sql) => {
+			const lista: any[] = await sql.query("select HorarioID id, HorarioIIntervalo ii, HorarioVIntervalo vi, HorarioSaida s from horarios where FuncID = ? and Data = date(now())", [id]);
+
+			if (!lista.length) {
+                await sql.query("insert into horarios (FuncID, Data, HorarioEntrada) values (?, date(now()), now())", [id]);
+            } else {
+                const ponto = lista[0];
+                if (!ponto.ii) {
+                    await sql.query("update horarios set HorarioIIntervalo = now() where HorarioID = ?", [ponto.id]);
+                } else if (!ponto.vi) {
+                    await sql.query("update horarios set HorarioVIntervalo = now() where HorarioID = ?", [ponto.id]);
+                } else if (!ponto.s) {
+                    await sql.query("update horarios set HorarioSaida = now() where HorarioID = ?", [ponto.id]);
+                } else {
+                    // já encerrou o dia!
+					return;
+                }
+            }
+		});
+
+		res.json(true);
+	}
 }
 
 export = FuncionarioRoute;
