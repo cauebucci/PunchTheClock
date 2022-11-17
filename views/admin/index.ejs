@@ -41,38 +41,129 @@
             <input type="date" id="id-filtro-data2" class="form-control">
         </div> 
         <div class="admin-filtro-cadastrar">
-            <button type="button" class="admin-filtro-buscar">Buscar <img src="/public/img/lupa.png"></button>
+            <button type="button" class="admin-filtro-buscar" onclick="filtrar();">Buscar <img src="/public/img/lupa.png"></button>
             <a type="button" href="/admin/cadastro" class="admin-filtro-cadastrar-botao">Cadastrar Funcionário</a>
         </div>
     </nav>
     
-    <div class="admin-tabela">
-        <table id="tabela" class="table table-striped table-hover"></table>
-    </div> 
+    <div class="admin-tabela" id="tabela-container"></div>
 </div>
 
 <script type="text/javascript" src="/public/lib/datatables/datatables.min.js"></script>
 <script type="text/javascript" src="/public/js/datatables-custom.js"></script>
 
 <script type="text/javascript">
-    $("#tabela").DataTable({
-        autoWidth: false,
-        searching: false,
-        language: tableLanguagePtBr,
-        order: [
-            [0, "asc"],
-            [2, "asc"]
-        ],
-        columns: [
-            { title: "ID", type: "number", data: "HorarioID" },
-            { title: "Funcionário", data: "FuncNome" },
-            { title: "Entrada", type:"customdatetimeint", data: "HorarioEntrada" },
-            { title: "Início Intervalo", type:"customdatetimeint", data: "HorarioIIntervalo" },
-            { title: "Fim Intervalo", type:"customdatetimeint", data: "HorarioVIntervalo" },
-            { title: "Saída", type:"customdatetimeint", data: "HorarioSaida" }
-            // { title: "Tempo Intervalo", type:"customtime", data: "tintervalo" },
-            // { title: "Tempo Trabalhado", type:"customtime", data: "ttrabalho" }
-        ],
-        data: <%- JSON.stringify(dados) %>
-    });
+    let tabela;
+
+    function format2(x) {
+        return (x < 10 ? "0" + x : x.toString());
+    }
+
+    function formatHHMM(m) {
+        m = parseInt(m);
+        if (isNaN(m)) {
+            return "";
+        }
+        return format2(Math.trunc(m / 60)) + ":" + format2(m % 60);
+    }
+
+    function atualizarTabela(dados) {
+        document.getElementById("tabela-container").innerHTML = '<table id="tabela" class="table table-striped table-hover"></table>';
+
+        tabela = $("#tabela").DataTable({
+            autoWidth: false,
+            searching: false,
+            language: tableLanguagePtBr,
+            order: [
+                [0, "asc"],
+                [2, "asc"]
+            ],
+            buttons: [{
+                extend: 'excel',
+                text: 'Save current page',
+                exportOptions: {
+                    modifier: {
+                        page: 'current'
+                    }
+                }
+            }],
+            columns: [
+                { title: "ID", type: "number", data: "HorarioID" },
+                {
+                    title: "Funcionário",
+                    data: "FuncNome",
+                    render: function (data, type, row, meta) {
+                        return `<button type="button" class="admin-filtro-func-botao"><img src="public/img/user.png" width="30px"></button> ${data}`;
+                    }
+                },
+                { title: "Entrada", type:"customdatetimeint", data: "HorarioEntrada" },
+                { title: "Início Intervalo", type:"customdatetimeint", data: "HorarioIIntervalo" },
+                { title: "Fim Intervalo", type:"customdatetimeint", data: "HorarioVIntervalo" },
+                { title: "Saída", type:"customdatetimeint", data: "HorarioSaida" },
+                {
+                    title: "Tempo Intervalo",
+                    type:"customtime",
+                    data: function (row) {
+                        return formatHHMM(row.minutos_intervalo);
+                    }
+                },
+                {
+                    title: "Tempo Trabalhado",
+                    type:"customtime",
+                    data: function (row) {
+                        return formatHHMM(row.minutos_trabalhados);
+                    }
+                }
+            ],
+            data: dados
+        });
+        
+        $("#tabela").on("click", "tbody button", function (e) {
+            const botao = this,
+                td = botao.parentNode,
+                tr = td.parentNode,
+                dado = tabela.row(tr).data();
+                Swal.fire({
+                    title: 'Dados do Funcionário',
+                    html: '<div><p><b>Nome:</b> ' + dado.FuncNome + '</p><p><b>Email:</b> ' + dado.FuncEmail + '</p><p><b>Nascimento:</b> ' + dado.FuncNiver + '</p><p><b>Tipo da Conta:</b> ' + dado.TipoNome + '</b></div>',
+                });
+            
+        });
+    }
+
+    async function buscarDados(funcionario, de, ate) {
+        let dados;
+        const response = await fetch("/admin/filtrar?funcionario=" + funcionario + "&de=" + encodeURIComponent(de) + "&ate=" + encodeURIComponent(ate));
+        if (!response.ok) {
+                processando = false;
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ops..',
+                    text: `Ocorreu um erro.`
+                });
+                return;
+            }
+        try {
+            dados = await response.json();
+            atualizarTabela(dados);
+        } catch (ex) {
+            Swal.fire({
+                    icon: 'error',
+                    title: 'Ops..',
+                    text: `ERRO: ` + ex.message
+                });
+            return;
+        }
+        
+    }
+
+    function filtrar(){
+        let funcionario = document.getElementById("id-filtro-func").value;
+        let de = document.getElementById("id-filtro-data1").value;
+        let ate = document.getElementById("id-filtro-data2").value;
+
+        buscarDados(funcionario, de, ate);
+    }
+
+    buscarDados("", "", "");
 </script>

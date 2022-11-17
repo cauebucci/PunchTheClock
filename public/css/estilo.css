@@ -120,6 +120,9 @@ img {
     color: white;
     margin-top: 10px;
 }
+.admin-filtro-buscar::selection{
+    border-width: 0px;
+}
 .admin-filtro-cadastrar{
    text-align: center;
 }
@@ -137,7 +140,6 @@ img {
 .admin-filtro-cadastrar-botao:hover{
     text-decoration: none;
     color: white;
-
 }
 .admin-tabela{
     margin-top: 20px;
@@ -153,6 +155,13 @@ img {
 
 .dataTables_wrapper > .row > .col-sm-12 {
     overflow: auto;
+}
+
+.admin-filtro-func-botao{
+    border-width: 0px;
+    background-color: transparent;
+    padding: 0px;
+    margin: 0px;
 }
 
 /* Cadastro */
