@@ -42,11 +42,13 @@
         </div> 
         <div class="admin-filtro-cadastrar">
             <button type="button" class="admin-filtro-buscar" onclick="filtrar();">Buscar <img src="/public/img/lupa.png"></button>
-            <a type="button" href="/admin/cadastro" class="admin-filtro-cadastrar-botao">Cadastrar Funcionário</a>
+            <a type="button" href="/admin/funcionarios" class="admin-filtro-cadastrar-botao">Funcionários</a>
         </div>
     </nav>
     
     <div class="admin-tabela" id="tabela-container"></div>
+
+    <div class="admin-tempo-trabalhado">Tempo Trabalhado: <span id="tempo-trabalhado"></span></div>
 </div>
 
 <script type="text/javascript" src="/public/lib/datatables/datatables.min.js"></script>
@@ -69,6 +71,13 @@
 
     function atualizarTabela(dados) {
         document.getElementById("tabela-container").innerHTML = '<table id="tabela" class="table table-striped table-hover"></table>';
+
+        let totalMinutos = 0;
+        for (let i = 0; i < dados.length; i++) {
+            totalMinutos += dados[i].minutos_trabalhados;
+        }
+
+        document.getElementById("tempo-trabalhado").textContent = formatHHMM(totalMinutos);
 
         tabela = $("#tabela").DataTable({
             autoWidth: false,

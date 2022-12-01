@@ -54,24 +54,47 @@
     `
     let EntrarEmServico = `
     <div>
-        <button type="button" onclick="baterPonto()" class="funcionario-botao-entrar">Entrar em Serviço</button>
+        <button id="botao" type="button" onclick="confirm()" class="funcionario-botao-entrar">Entrar em Serviço</button>
     </div>    
     `
     let IniciarAlmoco = `
     <div>
-        <button type="button" onclick="baterPonto()" class="funcionario-botao-ialmoco">Horário de Almoço</button>
+        <button id="botao" type="button" onclick="confirm()" class="funcionario-botao-ialmoco">Horário de Almoço</button>
     </div>    
     `
     let VoltarAlmoco = `
     <div>
-        <button type="button" onclick="baterPonto()" class="funcionario-botao-valmoco">Voltar ao Serviço</button>
+        <button id="botao" type="button" onclick="confirm()" class="funcionario-botao-valmoco">Voltar ao Serviço</button>
     </div>    
     `
     let SairDoServico = `
     <div>
-        <button type="button" onclick="baterPonto()" class="funcionario-botao-sair">Sair de Serviço</button>
+        <button id="botao" type="button" onclick="confirm()" class="funcionario-botao-sair">Sair de Serviço</button>
     </div>    
     `
+
+    function getStatus(){
+        let ObjectBotao = document.getElementById("botao");
+        let botao = ObjectBotao.textContent;
+        console.log(botao);
+        return botao;
+    }
+    function confirm() {
+        Swal.fire({
+            title: 'Bater Ponto',
+            text: `Você tem certeza que deseja ${getStatus()}?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Sim'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                baterPonto(getStatus());
+            }
+        })
+    }
 
     async function innerStatus() {
         if (processando) {
@@ -166,7 +189,7 @@
         idIntervalo = setInterval(atualizarHorario, 250);
     }
 
-    async function baterPonto() {
+    async function baterPonto(status) {
         if (processando) {
             return;
         }
@@ -188,9 +211,13 @@
                     text: `Ocorreu um erro.`
                 });
                 return;
+            } else {
+                await Swal.fire(
+                    status,
+                    'Ponto batido com sucesso!',
+                    'success'
+                );
             }
-
-            // Swal OK!
 
             innerStatus();
         } catch (ex) {

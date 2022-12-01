@@ -136,6 +136,7 @@ img {
     background-color: #4062A3;
     color: white;
     margin-top: 10px;
+    margin-left: 10px;
 }
 .admin-filtro-cadastrar-botao:hover{
     text-decoration: none;
@@ -162,6 +163,18 @@ img {
     background-color: transparent;
     padding: 0px;
     margin: 0px;
+}
+
+.admin-tempo-trabalhado {
+    text-align: center;
+    margin-top: 50px;
+    border-radius: 40px;
+    color: white;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 30px;
+    background-color: #557DCC;
 }
 
 /* Cadastro */
@@ -323,4 +336,29 @@ img {
 .funcionario-botao-sair:hover{
     text-decoration: none;
     color: white;
+}
+
+
+.funcionarios-tabela{
+    margin-right: 20px;
+    margin-left: 20px;
+    padding-top: 0px;
+}
+
+.funcionarios-titulo {
+    margin-top: 0px;
+    color:#557DCC;
+    font-weight: 800;
+    font-size: 50px;
+    text-align: center;
+}
+
+.funcionarios-titulo1{
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.funcionarios-botao {
+    margin-right: 20px;
+    text-align: right;
 }

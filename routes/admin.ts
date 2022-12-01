@@ -44,7 +44,51 @@ class AdminRoute {
 	}
 
 	public async cadastro(req: app.Request, res: app.Response) {
-		res.render("admin/cadastro");
+		res.render("admin/cadastro", {
+			titulo: "Cadastro",
+		});
+	}
+
+	public async funcionarios(req: app.Request, res: app.Response) {
+		let funcionarios;
+
+		await app.sql.connect(async (sql: app.Sql) => {
+			funcionarios = await sql.query("SELECT F.FuncID, F.FuncNome, F.FuncEmail, date_format(F.FuncNiver, '%d/%m/%Y') FuncNiver, T.TipoNome from funcionario F inner join tipo T on F.TipoID = T.TipoID;");
+		});
+
+		res.render("admin/funcionarios", {
+			titulo: "Funcionários",
+			funcionarios: funcionarios
+		});
+		
+	}
+	
+	@app.http.post()
+	public async DeletarFuncionario(req: app.Request, res: app.Response) {
+		let dados = req.body;
+
+
+		if (!dados) {
+			res.statusCode = 400;
+			res.json("id faltando");
+			return;
+		}
+
+		if (!dados.id) {
+			res.statusCode = 400;
+			res.json("id faltando");
+			return;
+		}
+
+		let id = parseInt(dados.id);
+
+		console.log(id);
+
+		await app.sql.connect(async (sql: app.Sql) => {
+			await sql.query("delete from funcionario where FuncID = ?;", id);
+		});
+
+		res.json(true);
 	}
 
 	@app.http.post()
@@ -86,6 +130,8 @@ class AdminRoute {
 
 		res.json(true);
 	}
+
+	
 	
 	public async filtrar(req: app.Request, res: app.Response) {
 		let funcionario = parseInt(req.query["funcionario"] as string);

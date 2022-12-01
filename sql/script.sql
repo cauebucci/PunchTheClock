@@ -72,3 +72,36 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+INSERT INTO `PunchTheClock`.`funcionario` VALUES (1, 'Cauê Lucas Bucci Bandeira', 'caue@espm.br', '2003-02-6', 2);
+INSERT INTO `PunchTheClock`.`funcionario` VALUES (2, 'André Kalili Franco', 'andre@espm.br', '2004-03-10', 2);
+INSERT INTO `PunchTheClock`.`funcionario` VALUES (3, 'Lucas Marques Barros Filgueiras', 'lucas@espm.br', '2004-01-12', 2);
+INSERT INTO `PunchTheClock`.`funcionario` VALUES (4, 'Lucia Helena Guimarões', 'lucia@espm.br', '1997-12-23', 1);
+INSERT INTO `PunchTheClock`.`funcionario` VALUES (5, 'Jorge Caio Alexandre Ferreira', 'jorge@espm.br', '1990-09-27', 1);
+INSERT INTO `PunchTheClock`.`funcionario` VALUES (6, 'Augusto César Levi da Mota', 'augusto@espm.br', '1985-11-06', 1);
+INSERT INTO `PunchTheClock`.`funcionario` VALUES (7, 'Heitor Emanuel Gomes', 'heitor@espm.br', '2001-01-16', 1);
+INSERT INTO `PunchTheClock`.`funcionario` VALUES (8, 'Isabelly Jennifer Sônia Jesus', 'isabelly@espm.br', '1999-08-23', 1);
+INSERT INTO `PunchTheClock`.`funcionario` VALUES (9, 'Hadassa Clarice Simone Martins', 'hadassa@espm.br', '1971-04-06', 1);
+INSERT INTO `PunchTheClock`.`funcionario` VALUES (10, 'Lucas Ricardo Jorge da Conceição', 'lucas_ricardo@espm.br', '1971-09-12', 1);
+
+INSERT INTO `PunchTheClock`.`horarios` VALUES (1, 7, '2022-11-12', '2022-11-12 07:55:12', '2022-11-12 12:00:23', '2022-11-12 12:59:23', '2022-11-12 18:02:55');
+INSERT INTO `PunchTheClock`.`horarios` VALUES (2, 10, '2022-11-12', '2022-11-12 07:52:22', '2022-11-12 12:03:43', '2022-11-12 13:00:31', '2022-11-12 18:00:25');
+INSERT INTO `PunchTheClock`.`horarios` VALUES (3, 4, '2022-11-12', '2022-11-12 07:54:24', '2022-11-12 12:00:23', '2022-11-12 13:03:44', '2022-11-12 18:10:45');
+INSERT INTO `PunchTheClock`.`horarios` VALUES (4, 6, '2022-11-12', '2022-11-12 08:13:43', '2022-11-12 12:02:19', '2022-11-12 13:10:12', '2022-11-12 18:04:14');
+INSERT INTO `PunchTheClock`.`horarios` VALUES (5, 5, '2022-11-12', '2022-11-12 07:25:18', '2022-11-12 12:10:54', '2022-11-12 13:18:13', '2022-11-12 18:02:42');
+INSERT INTO `PunchTheClock`.`horarios` VALUES (6, 9, '2022-11-12', '2022-11-12 07:00:22', '2022-11-12 12:02:12', '2022-11-12 12:52:15', '2022-11-12 18:05:45');
+
+INSERT INTO `PunchTheClock`.`horarios` VALUES (7, 4, '2022-11-13', '2022-11-13 07:55:12', '2022-11-13 12:00:23', '2022-11-13 12:59:23', '2022-11-13 18:02:55');
+INSERT INTO `PunchTheClock`.`horarios` VALUES (8, 6, '2022-11-13', '2022-11-13 07:52:22', '2022-11-13 12:03:43', '2022-11-13 13:01:31', '2022-11-13 18:00:15');
+INSERT INTO `PunchTheClock`.`horarios` VALUES (9, 10, '2022-11-13', '2022-11-13 07:54:24', '2022-11-13 12:00:23', '2022-11-13 12:53:44', '2022-11-13 18:09:25');
+INSERT INTO `PunchTheClock`.`horarios` VALUES (10, 8, '2022-11-13', '2022-11-13 08:13:43', '2022-11-13 12:02:19', '2022-11-13 13:16:12', '2022-11-13 18:02:41');
+INSERT INTO `PunchTheClock`.`horarios` VALUES (11, 7, '2022-11-13', '2022-11-13 07:15:18', '2022-11-13 12:10:54', '2022-11-13 12:58:13', '2022-11-13 18:01:44');
+INSERT INTO `PunchTheClock`.`horarios` VALUES (12, 5, '2022-11-13', '2022-11-13 07:00:22', '2022-11-13 12:02:12', '2022-11-13 13:02:15', '2022-11-13 18:07:05');
+
+INSERT INTO `PunchTheClock`.`horarios` VALUES (18,5, '2022-11-14', '2022-11-14 08:05:16', '2022-11-14 12:00:56', '2022-11-14 13:00:23', '2022-11-14 18:00:23');
+INSERT INTO `PunchTheClock`.`horarios` VALUES (17,6, '2022-11-14', '2022-11-14 08:03:04', '2022-11-14 12:05:16', '2022-11-14 12:58:16', '2022-11-14 18:05:16');
+INSERT INTO `PunchTheClock`.`horarios` VALUES (16,7, '2022-11-14', '2022-11-14 07:58:04', '2022-11-14 11:59:16', '2022-11-14 13:02:15', '2022-11-14 18:02:36');
+INSERT INTO `PunchTheClock`.`horarios` VALUES (15,8, '2022-11-14', '2022-11-14 08:04:15', '2022-11-14 12:15:12', '2022-11-14 12:59:25', '2022-11-14 18:01:19');
+INSERT INTO `PunchTheClock`.`horarios` VALUES (14,9, '2022-11-14', '2022-11-14 08:01:03', '2022-11-14 12:01:06', '2022-11-14 13:05:43', '2022-11-14 18:08:45');
+INSERT INTO `PunchTheClock`.`horarios` VALUES (13,10, '2022-11-14', '2022-11-14 08:07:34', '2022-11-14 12:03:58', '2022-11-14 13:01:19', '2022-11-14 18:05:37');

@@ -1,0 +1,93 @@
+<div class="funcionarios-titulo1">
+    <h1 class="funcionarios-titulo">Funcionários</h1>
+
+</div>
+    <div class="funcionarios-botao">
+    <a type="button" href="/admin/cadastro" class="admin-filtro-cadastrar-botao">Cadastrar Funcionário</a>
+
+</div>
+<div class="funcionarios-tabela">
+    <div class="admin-tabela" id="tabela-container"></div>
+</div>
+
+
+
+
+<script type="text/javascript" src="/public/lib/datatables/datatables.min.js"></script>
+<script type="text/javascript" src="/public/js/datatables-custom.js"></script>
+
+<script>
+    atualizarTabela();
+    async function atualizarTabela() {
+        document.getElementById("tabela-container").innerHTML = '<table id="tabela" class="table table-striped table-hover"></table>';
+        tabela = $("#tabela").DataTable({
+                autoWidth: false,
+                searching: false,
+                language: tableLanguagePtBr,
+                order: [
+                    [0, "asc"],
+                    [2, "asc"]
+                ],
+                columns: [
+                    { title: "#", type: "number", data: "FuncID" },
+                    { title: "Nome", type:"text", data: "FuncNome" },
+                    { title: "Email", type:"text", data: "FuncEmail" },
+                    { title: "Nascimento", type:"date", data: "FuncNiver" },
+                    { title: "Tipo da Conta", type:"text", data: "TipoNome" },
+                    
+                ],
+                data: <%- JSON.stringify(funcionarios) %>,
+        });
+        $("#tabela").on("click", "tbody button", function (e) {
+            const botao = this,
+                td = botao.parentNode,
+                tr = td.parentNode,
+                dado = tabela.row(tr).data();
+                deletar(dado);
+            
+        });
+    }
+
+    async function deletar(dado) {
+        let dados = {
+            id: dado.FuncID
+        }
+
+        let opcoes = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+		    },
+		    body: JSON.stringify(dados)
+		};
+        
+
+        try{
+            let response = await fetch("/admin/DeletarFuncionario", opcoes);
+
+            if(response.ok){
+                Swal.fire({
+                icon: 'success',
+                title: 'Funcionário deletado com sucesso!',
+                text: `O funcionário ${dado.FuncNome} foi cadastrado com sucesso!`
+                });
+                atualizarTabela()
+                        
+            }else{
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops..',
+                text: `Deu um erro ao deletar o funcionário!`
+                });
+
+            }
+
+        } catch(ex){
+            Swal.fire({
+            icon: 'error',
+            title: 'Ops..',
+            text: `Erro ao deletar! \n ERRO: ${ex.message}`
+        });
+        }
+    }
+</script>
