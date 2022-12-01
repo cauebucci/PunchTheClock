@@ -3,7 +3,7 @@
 
 </div>
     <div class="funcionarios-botao">
-    <a type="button" href="/admin/cadastro" class="admin-filtro-cadastrar-botao">Cadastrar Funcionário</a>
+    <a type="button" href="<%- root %>/admin/cadastro" class="admin-filtro-cadastrar-botao">Cadastrar Funcionário</a>
 
 </div>
 <div class="funcionarios-tabela">
@@ -13,8 +13,8 @@
 
 
 
-<script type="text/javascript" src="/public/lib/datatables/datatables.min.js"></script>
-<script type="text/javascript" src="/public/js/datatables-custom.js"></script>
+<script type="text/javascript" src="<%- root %>/public/lib/datatables/datatables.min.js"></script>
+<script type="text/javascript" src="<%- root %>/public/js/datatables-custom.js"></script>
 
 <script>
     atualizarTabela();
@@ -63,7 +63,7 @@
         
 
         try{
-            let response = await fetch("/admin/DeletarFuncionario", opcoes);
+            let response = await fetch("<%- root %>/admin/DeletarFuncionario", opcoes);
 
             if(response.ok){
                 Swal.fire({

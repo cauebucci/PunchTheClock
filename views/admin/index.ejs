@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="/public/lib/datatables/datatables.min.css"/>
+<link rel="stylesheet" type="text/css" href="<%- root %>/public/lib/datatables/datatables.min.css"/>
 
 <style type="text/css">
     .limitador {
@@ -41,8 +41,8 @@
             <input type="date" id="id-filtro-data2" class="form-control">
         </div> 
         <div class="admin-filtro-cadastrar">
-            <button type="button" class="admin-filtro-buscar" onclick="filtrar();">Buscar <img src="/public/img/lupa.png"></button>
-            <a type="button" href="/admin/funcionarios" class="admin-filtro-cadastrar-botao">Funcionários</a>
+            <button type="button" class="admin-filtro-buscar" onclick="filtrar();">Buscar <img src="<%- root %>/public/img/lupa.png"></button>
+            <a type="button" href="<%- root %>/admin/funcionarios" class="admin-filtro-cadastrar-botao">Funcionários</a>
         </div>
     </nav>
     
@@ -51,8 +51,8 @@
     <div class="admin-tempo-trabalhado">Tempo Trabalhado: <span id="tempo-trabalhado"></span></div>
 </div>
 
-<script type="text/javascript" src="/public/lib/datatables/datatables.min.js"></script>
-<script type="text/javascript" src="/public/js/datatables-custom.js"></script>
+<script type="text/javascript" src="<%- root %>/public/lib/datatables/datatables.min.js"></script>
+<script type="text/javascript" src="<%- root %>/public/js/datatables-custom.js"></script>
 
 <script type="text/javascript">
     let tabela;
@@ -102,7 +102,7 @@
                     title: "Funcionário",
                     data: "FuncNome",
                     render: function (data, type, row, meta) {
-                        return `<button type="button" class="admin-filtro-func-botao"><img src="public/img/user.png" width="30px"></button> ${data}`;
+                        return `<button type="button" class="admin-filtro-func-botao"><img src="<%- root %>/public/img/user.png" width="30px"></button> ${data}`;
                     }
                 },
                 { title: "Entrada", type:"customdatetimeint", data: "HorarioEntrada" },
@@ -142,7 +142,7 @@
 
     async function buscarDados(funcionario, de, ate) {
         let dados;
-        const response = await fetch("/admin/filtrar?funcionario=" + funcionario + "&de=" + encodeURIComponent(de) + "&ate=" + encodeURIComponent(ate));
+        const response = await fetch("<%- root %>/admin/filtrar?funcionario=" + funcionario + "&de=" + encodeURIComponent(de) + "&ate=" + encodeURIComponent(ate));
         if (!response.ok) {
                 processando = false;
                 Swal.fire({

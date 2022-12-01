@@ -75,8 +75,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 INSERT INTO `PunchTheClock`.`funcionario` VALUES (1, 'Cauê Lucas Bucci Bandeira', 'caue@espm.br', '2003-02-6', 2);
-INSERT INTO `PunchTheClock`.`funcionario` VALUES (2, 'André Kalili Franco', 'andre@espm.br', '2004-03-10', 2);
-INSERT INTO `PunchTheClock`.`funcionario` VALUES (3, 'Lucas Marques Barros Filgueiras', 'lucas@espm.br', '2004-01-12', 2);
+INSERT INTO `PunchTheClock`.`funcionario` VALUES (2, 'André Kalili Franco', 'andre@espm.br', '2004-08-17', 2);
+INSERT INTO `PunchTheClock`.`funcionario` VALUES (3, 'Lucas Marques Barros Filgueiras', 'lucas@espm.br', '2004-04-15', 2);
 INSERT INTO `PunchTheClock`.`funcionario` VALUES (4, 'Lucia Helena Guimarões', 'lucia@espm.br', '1997-12-23', 1);
 INSERT INTO `PunchTheClock`.`funcionario` VALUES (5, 'Jorge Caio Alexandre Ferreira', 'jorge@espm.br', '1990-09-27', 1);
 INSERT INTO `PunchTheClock`.`funcionario` VALUES (6, 'Augusto César Levi da Mota', 'augusto@espm.br', '1985-11-06', 1);

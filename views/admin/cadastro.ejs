@@ -44,7 +44,7 @@
               </div>
         </div>
         <div class="cadastro-botoes">
-            <a href="/admin/funcionarios" class="btn btn-primary">Voltar</a>
+            <a href="<%- root %>/admin/funcionarios" class="btn btn-primary">Voltar</a>
             <button type="button" class="btn btn-success" onclick="cadastrarFuncionario()">Cadastrar</button>
         </div>
        
@@ -113,7 +113,7 @@
         
 
         try{
-            let response = await fetch("/admin/CadastrarFuncionario", opcoes);
+            let response = await fetch("<%- root %>/admin/CadastrarFuncionario", opcoes);
 
             if(response.ok){
                 Swal.fire({

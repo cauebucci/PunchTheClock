@@ -23,12 +23,12 @@
 
 	<title><%=((typeof titulo === "undefined" || !titulo) ? "Punch The Clock" : (titulo + " | Punch The Clock")) %></title>
 
-	<link href="/public/css/estilo.css" rel="stylesheet" />
+	<link href="<%- root %>/public/css/estilo.css" rel="stylesheet" />
 </head>
 <body>
 	<div class="limitador">
 		<div class="cabecalho">
-			<a href="/"><img src="/public/img/logo.png" alt="Logo do Punch The Clock" width="200px"></a>
+			<a href="<%- root %>/"><img src="<%- root %>/public/img/logo.png" alt="Logo do Punch The Clock" width="200px"></a>
 		</div>
 	<%- body %>
 		<div class="rodape">

@@ -118,7 +118,7 @@
 
         try {
             processando = true;
-            const response = await fetch("/funcionario/getStatus?id=" + id);
+            const response = await fetch("<%- root %>/funcionario/getStatus?id=" + id);
             if (!response.ok) {
                 processando = false;
                 Swal.fire({
@@ -201,7 +201,7 @@
 
         try {
             processando = true;
-            const response = await fetch("/funcionario/baterPonto?id=" + id);
+            const response = await fetch("<%- root %>/funcionario/baterPonto?id=" + id);
             processando = false;
 
             if (!response.ok) {
